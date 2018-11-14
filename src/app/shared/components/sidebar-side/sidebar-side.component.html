@@ -1,0 +1,20 @@
+<div class="sidebar-panel">
+  <div id="scroll-area" [perfectScrollbar] class="navigation-hold" fxLayout="column">
+    <!-- App Logo -->
+    <div class="branding default-bg">
+      <!-- Two different logos for dark and light themes -->
+      <img 
+      src="assets/images/logo2x.png" 
+      alt="" 
+      *ngIf="themeService.activatedTheme?.name?.indexOf('dark') !== -1">
+      <img 
+      src="assets/images/logo2x.png" 
+      alt="" 
+      *ngIf="themeService.activatedTheme?.name?.indexOf('dark') === -1">
+    </div>
+
+
+    <!-- Navigation -->
+    <app-sidenav [items]="menuItems" [hasIconMenu]="hasIconTypeMenuItem" [iconMenuTitle]="iconTypeMenuTitle"></app-sidenav>
+  </div>
+</div>
