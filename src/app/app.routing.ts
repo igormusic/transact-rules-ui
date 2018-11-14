@@ -6,7 +6,7 @@ import { AuthGuard } from './shared/services/auth/auth.guard';
 export const rootRouterConfig: Routes = [
   { 
     path: '', 
-    redirectTo: 'blank', 
+    redirectTo: 'data/accounts', 
     pathMatch: 'full' 
   },
   
@@ -26,11 +26,6 @@ export const rootRouterConfig: Routes = [
     component: AdminLayoutComponent,
     canActivate: [AuthGuard],
     children: [
-      {
-        path: 'blank', 
-        loadChildren: './views/others/others.module#OthersModule', 
-        data: { title: 'Others', breadcrumb: 'OTHERS'}
-      },
       {
         path: 'data', 
         loadChildren: './views/data/data.module#DataModule', 
