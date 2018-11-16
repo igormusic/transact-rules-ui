@@ -1,12 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { ApiClientService } from '../../../api/apiClientService'
-import { MatDialogRef, MatDialog, MatSnackBar } from '@angular/material';
-import { AppConfirmService } from '../../../shared/services/app-confirm/app-confirm.service';
-import { AppLoaderService } from '../../../shared/services/app-loader/app-loader.service';
-import { Subscription } from 'rxjs';
-import { egretAnimations } from "../../../shared/animations/egret-animations";
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { DataSource } from '@angular/cdk/table';
+import { MatPaginator, MatSort, MatDialog, MatSnackBar } from '@angular/material';
+import { MatTableDataSource } from "@angular/material";
 import { Observable } from 'rxjs/Observable';
-import { Calendar } from '../../../api/models';
+import 'rxjs/add/operator/first';
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/observable/merge';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/observable/interval';
+import 'rxjs/add/operator/map';
+import * as moment from 'moment';
+import { egretAnimations } from "../../../shared/animations/egret-animations";
+
+import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import { AccountType } from '../../../api/models';
+import { ApiClientService } from '../../../api/apiClientService';
+import { Router} from "@angular/router";
+//import { SelectedAccountTypeService } from 'app/selected-account-type.service';
+//import { CreateAccountTypeComponent } from 'app/pages/settings/account-type/create-account-type/create-account-type.component';
+import { saveAs } from 'file-saver';
+import {  dump } from 'js-yaml';
+//import { ImportAccountComponent } from 'app/pages/settings/account-type/import-account/import-account.component';
+
 
 @Component({
   selector: 'app-account-type-list',
@@ -16,30 +33,97 @@ import { Calendar } from '../../../api/models';
 })
 export class AccountTypeListComponent implements OnInit {
 
-  public items: any[];
-  public getItemSub: Subscription;
+  scrollbar: any;
+
+  displayedColumns = ['image','labelName','className','actions'];
+  dataSource: MatTableDataSource<AccountType> | null;
+  items:Observable<AccountType[]>;
+
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
   constructor(
-    private dialog: MatDialog,
-    private snack: MatSnackBar,
-    private crudService: ApiClientService,
-    private confirmService: AppConfirmService,
-    private loader: AppLoaderService
-  ) { }
+    public composeDialog: MatDialog,
+    private apiService: ApiClientService,
+    private router:Router,
+    //private selectedAccountTypeService: SelectedAccountTypeService,
+    private snackBar: MatSnackBar ) {
+
+      this.dataSource = new MatTableDataSource<AccountType>([]);
+      this.dataSource.paginator = this.paginator;
+
+  }
 
   ngOnInit() {
-    this.getItems()
+    //this.loadData();
+    this.items = this.apiService.getAccountTypes();
+    this.items.subscribe( accountTypes => {
+      this.dataSource = new MatTableDataSource<AccountType>( accountTypes);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.filter = "";
+    } )
   }
 
   ngOnDestroy() {
-    if (this.getItemSub) {
-      this.getItemSub.unsubscribe()
-    }
   }
-  
-  getItems() {
-    this.getItemSub= this.crudService.getAccountTypes()
-     .subscribe(data => {
-        this.items = data;
+
+
+  private saveToJson(accountType:AccountType) {
+    const fileName = accountType.className + ".json";
+    const contentDispositionHeader: string = 'Content-Disposition: attachment; filename="' + fileName + '"'
+
+    const blob = new Blob([JSON.stringify(accountType)], { type: 'application/json' });
+    saveAs(blob, fileName);
+  }
+
+  private saveToYaml(accountType:AccountType) {
+    const fileName = accountType.className + ".yaml";
+    const contentDispositionHeader: string = 'Content-Disposition: attachment; filename="' + fileName + '"'
+    
+    const blob = new Blob([dump(accountType)], { type: 'text/json' });
+    saveAs(blob, fileName);
+  }
+
+  create(){
+    /* const dialogRef = this.composeDialog.open(CreateAccountTypeComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.dataSource.data.push(result.object);
+        this.dataSource.filter = "";
+        this.snackBar.open(result.message, null, {
+          duration: 3000
+        });
+      }
+    }); */
+  }
+
+  import(){
+    /* const dialogRef = this.composeDialog.open(ImportAccountComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.dataSource.data.push(result.object);
+        this.dataSource.filter = "";
+        this.snackBar.open(result.message, null, {
+          duration: 3000
+        });
+      }
+    }); */
+  }
+
+  update(accountType:AccountType ){
+    //this.selectedAccountTypeService.set(accountType);
+    this.router.navigate(['settings/account-type-details']);
+  }
+
+  delete(accountType:AccountType){
+    this.apiService.deleteAccountTypeByName(accountType.className)
+      .subscribe(response => {
+        var index= this.dataSource.data.findIndex((item:AccountType) => item.className===accountType.className);
+        this.dataSource.data.splice(index,1);
+        this.dataSource.filter = "";
+        
+        this.snackBar.open("deleted account type", null, {duration:3000});
       });
   }
 }

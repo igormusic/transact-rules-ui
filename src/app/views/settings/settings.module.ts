@@ -15,13 +15,16 @@ import {
   MatRadioModule,
   MatTabsModule,
   MatInputModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatTableModule,
+  MatPaginator
  } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
 import { SharedModule } from '../../shared/shared.module';
+import { CdkTableModule } from '@angular/cdk/table';
 
 import { AccountTypeListComponent } from './account-type-list/account-type-list.component';
 
@@ -44,8 +47,10 @@ import { SettingsRoutes } from './settings.routing';
     MatTabsModule,
     MatInputModule,
     MatProgressBarModule,
+    MatTableModule,
     FlexLayoutModule,
     NgxDatatableModule,
+    CdkTableModule,
     ChartsModule,
     FileUploadModule,
     SharedModule,
