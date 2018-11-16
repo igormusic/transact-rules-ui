@@ -1,0 +1,1366 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Account servicing APIs by TransactRules.",
+        "version": "API TOS",
+        "title": "TransactRules Account API",
+        "termsOfService": "Terms of service",
+        "contact": {
+            "name": "Igor Music",
+            "url": "www.transactrules.com",
+            "email": "igor@transactrules.com"
+        },
+        "license": {
+            "name": "License of API",
+            "url": "API license URL"
+        }
+    },
+    "host": "localhost:8090",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "account-type-controller",
+            "description": "Account Type Controller"
+        },
+        {
+            "name": "calendar-controller",
+            "description": "Calendar Controller"
+        },
+        {
+            "name": "account-controller",
+            "description": "Account Controller"
+        }
+    ],
+    "paths": {
+        "/accountTypes": {
+            "get": {
+                "tags": [
+                    "account-type-controller"
+                ],
+                "summary": "Get all AccountTypes",
+                "operationId": "findAllUsingGET_1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/AccountType"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "account-type-controller"
+                ],
+                "summary": "Add a new AccountType",
+                "operationId": "createUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "item",
+                        "description": "item",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/AccountType"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/AccountType"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/accountTypes/{className}": {
+            "get": {
+                "tags": [
+                    "account-type-controller"
+                ],
+                "summary": "Get AccountType by class Name",
+                "operationId": "findByNameUsingGET",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "className",
+                        "in": "path",
+                        "description": "className",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/AccountType"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "account-type-controller"
+                ],
+                "summary": "Delete AccountType by class Name",
+                "operationId": "deleteByNameUsingDELETE",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "className",
+                        "in": "path",
+                        "description": "className",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/accountTypes/{className}/positionTypes": {
+            "get": {
+                "tags": [
+                    "account-type-controller"
+                ],
+                "summary": "Get AccountType by class Name",
+                "operationId": "getPositionTypesForAccountUsingGET",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "className",
+                        "in": "path",
+                        "description": "className",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/PositionType"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "account-type-controller"
+                ],
+                "summary": "Add a new PositionType",
+                "operationId": "createPositionTypeUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "item",
+                        "description": "item",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PositionType"
+                        }
+                    },
+                    {
+                        "name": "className",
+                        "in": "path",
+                        "description": "className",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/PositionType"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/accountTypes/{className}/positionTypes/{propertyName}": {
+            "get": {
+                "tags": [
+                    "account-type-controller"
+                ],
+                "summary": "Get AccountType by class Name",
+                "operationId": "getPositionTypeForAccountUsingGET",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "className",
+                        "in": "path",
+                        "description": "className",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "propertyName",
+                        "in": "path",
+                        "description": "propertyName",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/PositionType"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "account-type-controller"
+                ],
+                "summary": "Get AccountType by class Name",
+                "operationId": "updatePositionTypeForAccountUsingPATCH",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "item",
+                        "description": "item",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PositionTypePatch"
+                        }
+                    },
+                    {
+                        "name": "className",
+                        "in": "path",
+                        "description": "className",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "propertyName",
+                        "in": "path",
+                        "description": "propertyName",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/PositionType"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/accounts": {
+            "get": {
+                "tags": [
+                    "account-controller"
+                ],
+                "summary": "Get all Accounts",
+                "operationId": "findAllUsingGET",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Account"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "account-controller"
+                ],
+                "summary": "Save new Account",
+                "operationId": "saveUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "account",
+                        "description": "account",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Account"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/accounts/calculateProperties": {
+            "post": {
+                "tags": [
+                    "account-controller"
+                ],
+                "summary": "Get calculated properties based on input prototype properties",
+                "operationId": "getCalculatedPropertiesUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "prototype",
+                        "description": "prototype",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Account"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Account"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/accounts/solveInstalments": {
+            "post": {
+                "tags": [
+                    "account-controller"
+                ],
+                "summary": "Solve instalments",
+                "operationId": "solveInstalmentsUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "prototype",
+                        "description": "prototype",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Account"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Account"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/accounts/{accountTypeName}/new": {
+            "get": {
+                "tags": [
+                    "account-controller"
+                ],
+                "summary": "Get default account data",
+                "operationId": "createUsingGET",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "accountTypeName",
+                        "in": "path",
+                        "description": "accountTypeName",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Account"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/accounts/{id}": {
+            "get": {
+                "tags": [
+                    "account-controller"
+                ],
+                "summary": "Get Account by Account Number",
+                "operationId": "findByAccountNumberUsingGET_1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Account"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/accounts/{id}/activate": {
+            "get": {
+                "tags": [
+                    "account-controller"
+                ],
+                "summary": "Activate account",
+                "operationId": "activateUsingGET",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Account"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/accounts/{id}/transactions": {
+            "get": {
+                "tags": [
+                    "account-controller"
+                ],
+                "summary": "Get Transactions for account",
+                "operationId": "findByAccountNumberUsingGET",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "from",
+                        "in": "query",
+                        "description": "from",
+                        "required": false,
+                        "type": "string",
+                        "default": "today"
+                    },
+                    {
+                        "name": "to",
+                        "in": "query",
+                        "description": "to",
+                        "required": false,
+                        "type": "string",
+                        "default": "today"
+                    },
+                    {
+                        "name": "positionType1",
+                        "in": "query",
+                        "description": "positionType1",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "positionType2",
+                        "in": "query",
+                        "description": "positionType2",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Transaction"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/calendars": {
+            "get": {
+                "tags": [
+                    "calendar-controller"
+                ],
+                "summary": "Get all Calendars",
+                "operationId": "findAllUsingGET_2",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Calendar"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Account": {
+            "type": "object",
+            "properties": {
+                "accountNumber": {
+                    "type": "string"
+                },
+                "accountTypeName": {
+                    "type": "string"
+                },
+                "active": {
+                    "type": "boolean"
+                },
+                "amounts": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/AmountValue"
+                    }
+                },
+                "calendarNames": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "dateActivated": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "dates": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/DateValue"
+                    }
+                },
+                "instalmentSets": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/InstalmentSet"
+                    }
+                },
+                "options": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/OptionValue"
+                    }
+                },
+                "positions": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/Position"
+                    }
+                },
+                "rates": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/RateValue"
+                    }
+                },
+                "schedules": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/Schedule"
+                    }
+                }
+            }
+        },
+        "AccountType": {
+            "type": "object",
+            "properties": {
+                "amountTypes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AmountType"
+                    }
+                },
+                "className": {
+                    "type": "string"
+                },
+                "dateTypes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/DateType"
+                    }
+                },
+                "instalmentTypes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/InstalmentType"
+                    }
+                },
+                "labelName": {
+                    "type": "string"
+                },
+                "optionTypes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/OptionType"
+                    }
+                },
+                "positionTypes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/PositionType"
+                    }
+                },
+                "rateTypes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RateType"
+                    }
+                },
+                "scheduleTypes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ScheduleType"
+                    }
+                },
+                "scheduledTransactions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ScheduledTransaction"
+                    }
+                },
+                "transactionTypes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TransactionType"
+                    }
+                }
+            }
+        },
+        "AmountType": {
+            "type": "object",
+            "properties": {
+                "labelName": {
+                    "type": "string"
+                },
+                "propertyName": {
+                    "type": "string"
+                },
+                "required": {
+                    "type": "boolean"
+                },
+                "valueDated": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "AmountValue": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "number"
+                },
+                "valueDate": {
+                    "type": "string",
+                    "format": "date"
+                }
+            }
+        },
+        "Calendar": {
+            "type": "object",
+            "properties": {
+                "default": {
+                    "type": "boolean"
+                },
+                "holidays": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/HolidayDate"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "DateType": {
+            "type": "object",
+            "properties": {
+                "isStartDate": {
+                    "type": "boolean"
+                },
+                "labelName": {
+                    "type": "string"
+                },
+                "propertyName": {
+                    "type": "string"
+                },
+                "required": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "DateValue": {
+            "type": "object",
+            "properties": {
+                "date": {
+                    "type": "string",
+                    "format": "date"
+                }
+            }
+        },
+        "HolidayDate": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string",
+                    "format": "date"
+                }
+            }
+        },
+        "InstalmentSet": {
+            "type": "object",
+            "properties": {
+                "instalments": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/InstalmentValue"
+                    }
+                }
+            }
+        },
+        "InstalmentType": {
+            "type": "object",
+            "properties": {
+                "interestAccruedPositionTypeName": {
+                    "type": "string"
+                },
+                "interestCapitalizedPositionTypeName": {
+                    "type": "string"
+                },
+                "labelName": {
+                    "type": "string"
+                },
+                "positionTypeName": {
+                    "type": "string"
+                },
+                "propertyName": {
+                    "type": "string"
+                },
+                "scheduleTypeName": {
+                    "type": "string"
+                },
+                "timing": {
+                    "type": "string",
+                    "description": "Transaction timing",
+                    "enum": [
+                        "START_OF_DAY",
+                        "END_OF_DAY"
+                    ]
+                },
+                "transactionTypeName": {
+                    "type": "string"
+                }
+            }
+        },
+        "InstalmentValue": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "number"
+                },
+                "hasFixedValue": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "OptionType": {
+            "type": "object",
+            "properties": {
+                "labelName": {
+                    "type": "string"
+                },
+                "optionListExpression": {
+                    "type": "string"
+                },
+                "propertyName": {
+                    "type": "string"
+                },
+                "required": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "OptionValue": {
+            "type": "object",
+            "properties": {
+                "value": {
+                    "type": "string"
+                },
+                "values": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "Position": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "number"
+                }
+            }
+        },
+        "PositionType": {
+            "type": "object",
+            "properties": {
+                "labelName": {
+                    "type": "string"
+                },
+                "principal": {
+                    "type": "boolean"
+                },
+                "propertyName": {
+                    "type": "string"
+                }
+            }
+        },
+        "PositionTypePatch": {
+            "type": "object",
+            "properties": {
+                "labelName": {
+                    "type": "string"
+                },
+                "propertyName": {
+                    "type": "string"
+                }
+            }
+        },
+        "RateType": {
+            "type": "object",
+            "properties": {
+                "labelName": {
+                    "type": "string"
+                },
+                "propertyName": {
+                    "type": "string"
+                },
+                "required": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "RateValue": {
+            "type": "object",
+            "properties": {
+                "value": {
+                    "type": "number"
+                },
+                "valueDate": {
+                    "type": "string",
+                    "format": "date"
+                }
+            }
+        },
+        "Schedule": {
+            "type": "object",
+            "properties": {
+                "businessDayCalculation": {
+                    "type": "string"
+                },
+                "endDate": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "endType": {
+                    "type": "string"
+                },
+                "excludeDates": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ScheduleDate"
+                    }
+                },
+                "frequency": {
+                    "type": "string"
+                },
+                "includeDates": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ScheduleDate"
+                    }
+                },
+                "interval": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "numberOfRepeats": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "startDate": {
+                    "type": "string",
+                    "format": "date"
+                }
+            }
+        },
+        "ScheduleDate": {
+            "type": "object",
+            "properties": {
+                "value": {
+                    "type": "string",
+                    "format": "date"
+                }
+            }
+        },
+        "ScheduleType": {
+            "type": "object",
+            "properties": {
+                "businessDayCalculation": {
+                    "type": "string",
+                    "description": "Define working day adjustment",
+                    "enum": [
+                        "ANY_DAY",
+                        "NEXT_BUSINESS_DAY",
+                        "PREVIOUS_BUSINESS_DAY",
+                        "CLOSEST_BUSINESS_DAY_NEXT",
+                        "NEXT_BUSINESS_DAY_THIS_MONTH_OR_PREVIOUS"
+                    ]
+                },
+                "endDateExpression": {
+                    "type": "string"
+                },
+                "excludeDatesExpression": {
+                    "type": "string"
+                },
+                "includeDatesExpression": {
+                    "type": "string"
+                },
+                "intervalExpression": {
+                    "type": "string"
+                },
+                "isCalculated": {
+                    "type": "boolean"
+                },
+                "labelName": {
+                    "type": "string"
+                },
+                "numberOfRepeatsExpression": {
+                    "type": "string"
+                },
+                "propertyName": {
+                    "type": "string"
+                },
+                "scheduleEndType": {
+                    "type": "string",
+                    "description": "Schedule end",
+                    "enum": [
+                        "NO_END",
+                        "END_DATE",
+                        "REPEATS"
+                    ]
+                },
+                "scheduleFrequency": {
+                    "type": "string",
+                    "description": "Schedule repeat period",
+                    "enum": [
+                        "DAILY",
+                        "MONTHLY"
+                    ]
+                },
+                "startDateExpression": {
+                    "type": "string"
+                }
+            }
+        },
+        "ScheduledTransaction": {
+            "type": "object",
+            "properties": {
+                "amountExpression": {
+                    "type": "string"
+                },
+                "dateTypeName": {
+                    "type": "string"
+                },
+                "labelName": {
+                    "type": "string"
+                },
+                "propertyName": {
+                    "type": "string"
+                },
+                "scheduleTypeName": {
+                    "type": "string"
+                },
+                "sequence": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "timing": {
+                    "type": "string",
+                    "description": "Transaction timing",
+                    "enum": [
+                        "START_OF_DAY",
+                        "END_OF_DAY"
+                    ]
+                },
+                "transactionTypeName": {
+                    "type": "string"
+                }
+            }
+        },
+        "Transaction": {
+            "type": "object",
+            "properties": {
+                "actionDate": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "amount": {
+                    "type": "number"
+                },
+                "positions": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "number"
+                    }
+                },
+                "transactionTypeName": {
+                    "type": "string"
+                },
+                "valueDate": {
+                    "type": "string",
+                    "format": "date"
+                }
+            }
+        },
+        "TransactionRuleType": {
+            "type": "object",
+            "properties": {
+                "positionTypeName": {
+                    "type": "string"
+                },
+                "transactionOperation": {
+                    "type": "string",
+                    "description": "Transaction Operation",
+                    "enum": [
+                        "ADD",
+                        "SUBTRACT"
+                    ]
+                }
+            }
+        },
+        "TransactionType": {
+            "type": "object",
+            "properties": {
+                "labelName": {
+                    "type": "string"
+                },
+                "maximumPrecision": {
+                    "type": "boolean"
+                },
+                "propertyName": {
+                    "type": "string"
+                },
+                "transactionRules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/TransactionRuleType"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,3 +1,47 @@
-<p>
-  account-type-list works!
-</p>
+<mat-card class="p-0" [@animate]="{value:'*',params:{y:'50px',delay:'300ms'}}">
+  <mat-card-content class="p-0">
+    <ngx-datatable
+          class="material ml-0 mr-0"
+          [rows]="items"
+          [columnMode]="'flex'"
+          [headerHeight]="50"
+          [footerHeight]="50"
+          [limit]="10"
+          [rowHeight]="'auto'">
+          <ngx-datatable-column name="Name" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{ row?.labelName }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Class Name" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{ row?.className }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Actions" [flexGrow]="1" >
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <button type="button" mat-icon-button [matMenuTriggerFor]="actionsMenu" (click)="$event.stopPropagation()">
+                <mat-icon>more_horiz</mat-icon>
+              </button>
+  
+              <mat-menu #actionsMenu="matMenu" yPosition="below" xPosition="before">
+                <button (click)="update(row)" mat-menu-item>
+                  <span>Modify</span>
+                </button>
+                <button (click)="delete(row)" mat-menu-item>
+                  <span>Delete</span>
+                </button>
+                <button (click)="saveToJson(row)" mat-menu-item>
+                  <span>JSON Export</span>
+                </button>
+                <button (click)="saveToYaml(row)" mat-menu-item>
+                  <span>YAML Export</span>
+                </button>
+              </mat-menu>
+            </ng-template>
+          </ngx-datatable-column>
+
+
+        </ngx-datatable>
+  </mat-card-content>
+</mat-card>
